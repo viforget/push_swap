@@ -1,25 +1,44 @@
-#include "push_swap.c"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/28 15:24:54 by viforget          #+#    #+#             */
+/*   Updated: 2021/04/28 15:25:33 by viforget         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	sa(t_stack *stack[2])
+#include "push_swap.h"
+
+t_stacks	sa(t_stacks stacks)
 {
 	int nb;
 
-	nb = stack[A]->nb;
-	stack[A]->nb = stack[A]->next->nb;
-	stack[A]->next->nb = nb
+	if (!stacks.a)
+		return (stacks);
+	nb = stacks.a->nb;
+	stacks.a->nb = stacks.a->next->nb;
+	stacks.a->next->nb = nb;
+	return(stacks);
 }
 
-void	sb(t_stack *stack[2])
+t_stacks	sb(t_stacks stacks)
 {
 	int nb;
 
-	nb = stack[B]->nb;
-	stack[B]->nb = stack[B]->next->nb;
-	stack[B]->next->nb = nb
+	if (!stacks.b)
+		return (stacks);
+	nb = stacks.b->nb;
+	stacks.b->nb = stacks.b->next->nb;
+	stacks.b->next->nb = nb;
+	return(stacks);
 }
 
-void	ss(t_stack *stack[2])
+t_stacks	ss(t_stacks stacks)
 {
-	sa(stack);
-	sb(stack);
+	stacks = sa(stacks);
+	stacks = sb(stacks);
+	return(stacks);
 }

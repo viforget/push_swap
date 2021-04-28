@@ -1,21 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/28 15:24:52 by viforget          #+#    #+#             */
+/*   Updated: 2021/04/28 15:25:34 by viforget         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	pa(t_stack *stack[2])
+t_stacks	pa(t_stacks stacks)
 {
 	t_stack *buf;
 
-	buf = stack[B];
-	stack[B] = stack[B]->next;
-	buf->next = stack[A];
-	stack[A] = buf;
+	if (stacks.b)
+	{
+		buf = stacks.b;
+		stacks.b = stacks.b->next;
+		buf->next = stacks.a;
+		stacks.a = buf;
+	}
+	return(stacks);
 }
 
-void	pb(t_stack *stack[2])
+t_stacks	pb(t_stacks stacks)
 {
 	t_stack *buf;
 
-	buf = stack[A];
-	stack[A] = stack[A]->next;
-	buf->next = stack[B];
-	stack[B] = buf;
+	if (stacks.a)
+	{
+		buf = stacks.a;
+		stacks.a = stacks.a->next;
+		buf->next = stacks.b;
+		stacks.b = buf;
+	}
+	return(stacks);
 }
