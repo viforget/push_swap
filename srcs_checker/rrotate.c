@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:47 by viforget          #+#    #+#             */
-/*   Updated: 2021/04/29 14:04:42 by viforget         ###   ########.fr       */
+/*   Updated: 2021/04/29 14:18:03 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_stacks	rra(t_stacks stacks)
 	return (stacks);
 }
 
-t_stacks	rra(t_stacks stacks)
+t_stacks	rrb(t_stacks stacks)
 {
 	t_stack	*buf;
 	t_stack	*buf2;

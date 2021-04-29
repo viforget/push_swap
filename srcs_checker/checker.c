@@ -6,13 +6,12 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/04/29 14:05:12 by viforget         ###   ########.fr       */
+/*   Updated: 2021/04/29 14:31:12 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
 int 	print_list(t_stack *list)
 {
 	while (list)
@@ -23,7 +22,6 @@ int 	print_list(t_stack *list)
 	printf("\n");
 	return (1);
 }
-*/
 
 t_stack	*get_list(int nb, char **av)
 {
@@ -55,8 +53,11 @@ int 	check_list(t_stack *list)
 	while (list->next)
 	{
 		list = list->next;
-		if (nb < list->nb)
+		if (nb > list->nb)
+		{
+			printf("%d %d", nb, list->nb);
 			return(0);
+		}
 	}
 	return (1);
 }
@@ -93,10 +94,11 @@ int	main(int ac, char **av)
 	t_stacks	stacks;
 	char		*str;
 
+	if (ac <= 1)
+		return(1);
 	stacks.a = get_list(ac, av);
 	while(get_next_line(1, &str))
 	{
-		print_list(stacks.a);
 		stacks = do_ins(stacks, str);
 		print_list(stacks.a);
 		free(str);
