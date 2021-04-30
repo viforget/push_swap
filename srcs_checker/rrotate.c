@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:47 by viforget          #+#    #+#             */
-/*   Updated: 2021/04/29 14:18:03 by viforget         ###   ########.fr       */
+/*   Updated: 2021/04/30 11:35:14 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stacks	rra(t_stacks stacks)
 	t_stack	*buf;
 	t_stack	*buf2;
 
-	if (!stacks.a)
+	if (!stacks.a || !stacks.a->next)
 		return (stacks);
 	buf = stacks.a;
 	while (buf->next->next)
@@ -47,7 +47,7 @@ t_stacks	rrb(t_stacks stacks)
 	t_stack	*buf;
 	t_stack	*buf2;
 
-	if (!stacks.b)
+	if (!stacks.b || !stacks.b->next)
 		return (stacks);
 	buf = stacks.b;
 	while (buf->next->next)
