@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/04/30 12:03:29 by viforget         ###   ########.fr       */
+/*   Updated: 2021/04/30 18:24:32 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	check_list(t_stack *list)
 {
 	int	nb;
 
-	nb = list->nb;
 	while (list->next)
 	{
+		nb = list->nb;
 		list = list->next;
-		if (nb > list->nb)
+		if (nb >= list->nb)
 			return (0);
 	}
 	return (1);
@@ -113,14 +113,16 @@ int	main(int ac, char **av)
 	flag = 0;
 	if (ac <= 1)
 		return (1);
-	while (av[1][0] == '-')
+	while (av[1] && av[1][0] == '-')
 	{
 		if (!ft_strcmp("-v", av[1]))
 			flag += 1;
 		if (!ft_strcmp("-c", av[1]))
 			flag += 2;
 		av++;
+		ac--;
 	}
+	//printf("%s\n", av[1]);
 	stacks.a = get_list(ac, av);
 	if (read(0, NULL, 0) == 0)
 		stacks = loop_ps(0, stacks, flag);

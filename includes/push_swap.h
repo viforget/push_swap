@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/04/28 18:55:50 by viforget         ###   ########.fr       */
+/*   Updated: 2021/04/30 16:18:55 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct	s_stacks
 	t_stack	*a;
 	t_stack	*b;
 }				t_stacks;
+
+
+void a3(t_stacks stacks);
 
 /*
 ** OPERATIONS
