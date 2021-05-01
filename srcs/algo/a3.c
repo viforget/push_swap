@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 18:12:05 by lobertin          #+#    #+#             */
-/*   Updated: 2021/04/30 18:18:37 by viforget         ###   ########.fr       */
+/*   Updated: 2021/04/30 18:25:54 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,49 +32,9 @@ int	*tri	(int *tab, int size)
 		}
 		else
 			i++;
-		
 	}
 	return (tab);
 }
-
-/*int	*tri	(int *tab, int size)
-{
-	int	x;
-	int	y;
-	int	z;
-	int	temp;
-
-	x = 0;
-	y = 1;
-	z = 0;
-	while (z != size)
-	{
-		while (y < size - 1 - z)
-		{
-			if (tab[x] > tab[y])
-			{
-				temp = tab[x];
-				tab[x] = tab[y];
-				tab[y] = temp;
-			}
-			x++;
-			y++;
-		}
-		while (x > z)
-		{
-			if (tab[x] > tab[y])
-			{
-				temp = tab[y];
-				tab[y] = tab[x];
-				tab[x] = temp;
-			}
-			x--;
-			y--;
-		}
-		z++;
-	}
-	return (tab);
-}*/
 
 int sizeoflist(t_stack *list)
 {

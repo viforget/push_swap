@@ -1,6 +1,7 @@
 #include "push_swap.h"
 
 t_stack	*get_list(int nb, char **av);
+void	a2(t_stacks stacks);
 
 int main(int ac, char **av)
 {
@@ -17,10 +18,16 @@ int main(int ac, char **av)
 			flag += 1;
 		if (!ft_strcmp("-c", av[1]))
 			flag += 2;
+		if (!ft_strcmp("-g", av[1]))
+		{
+			flag += 4;
+			av++;
+			ac--;
+		}
 		av++;
 		ac--;
 	}
-
-	stacks.a = get_list(ac, av);
+	if ((flag / 4) % 2 == 0)
+		stacks.a = get_list(ac, av);	
 	a3(stacks);
 }
