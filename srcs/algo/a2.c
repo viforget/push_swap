@@ -1,14 +1,16 @@
 #include "push_swap.h"
 
+int sizeoflist(t_stack *list);
+
 void a2(t_stacks stacks)
 {
 	int i;
+	int size;
 
 	i = 0;
-	while (!check_list(stacks.a))
+	size = sizeoflist(stacks.a);
+	while (!check_list(stacks.a) && i < size - 1)
 	{
-		//print_list(stacks.a, "A");
-		
 		if (stacks.a->nb > stacks.a->next->nb)
 		{
 			printf("sa\n");
@@ -27,4 +29,7 @@ void a2(t_stacks stacks)
 			stacks = ra(stacks);
 		}
 	}
+	//print_list(stacks.a, "A");
+	printf("ra\n");
+	stacks = ra(stacks);
 }

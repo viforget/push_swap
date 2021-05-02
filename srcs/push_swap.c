@@ -26,5 +26,6 @@ int main(int ac, char **av)
 	}
 	if ((flag / 4) % 2 == 0)
 		stacks.a = get_list(ac, av);	
-	a3(stacks);
+	if (!check_list(stacks.a))
+		a3(stacks);
 }
