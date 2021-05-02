@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/01 22:21:31 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/02 02:23:07 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,32 @@ t_stacks	loop_ps(int fd, t_stacks stacks, int flag)
 		}
 		free(str);
 	}
+	return (stacks);
+}
+
+t_stacks	do_ins(t_stacks stacks, char *ins)
+{
+	if (!ft_strcmp(ins, "sa"))
+		stacks = sa(stacks);
+	if (!ft_strcmp(ins, "sb"))
+		stacks = sb(stacks);
+	if (!ft_strcmp(ins, "ss"))
+		stacks = ss(stacks);
+	if (!ft_strcmp(ins, "pa"))
+		stacks = pa(stacks);
+	if (!ft_strcmp(ins, "pb"))
+		stacks = pb(stacks);
+	if (!ft_strcmp(ins, "ra"))
+		stacks = ra(stacks);
+	if (!ft_strcmp(ins, "rb"))
+		stacks = rb(stacks);
+	if (!ft_strcmp(ins, "rr"))
+		stacks = rr(stacks);
+	if (!ft_strcmp(ins, "rra"))
+		stacks = rra(stacks);
+	if (!ft_strcmp(ins, "rrb"))
+		stacks = rrb(stacks);
+	if (!ft_strcmp(ins, "rrr"))
+		stacks = rrr(stacks);
 	return (stacks);
 }

@@ -1,8 +1,5 @@
 #include "push_swap.h"
 
-t_stack	*get_list(int nb, char **av);
-void	a2(t_stacks stacks);
-
 int main(int ac, char **av)
 {
 	t_stacks	stacks;

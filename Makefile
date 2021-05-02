@@ -1,50 +1,57 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: viforget <viforget@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/04/28 16:03:20 by viforget          #+#    #+#              #
-#    Updated: 2021/04/28 16:49:18 by viforget         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 PUSH_SWAP =		push_swap
 CHECKER =		checker
-NAME =			$(CHECKER)
+NAME =			$(CHECKER) $(PUSH_SWAP)
 FLAGS = -Wall -Wextra -Werror -I includes
 
 CC = @gcc -I includes
 LIBDIR = libft
 
-#SRCS_PS = srcs
+SRCS_PS = srcs/push_swap.c\
+			srcs/stack_utils.c\
+			srcs/algo/a2.c\
+			srcs/algo/a3.c
 
-SRCS_CHECKER = srcs_checker/push.c\
-				srcs_checker/rotate.c\
-				srcs_checker/rrotate.c\
-				srcs_checker/swap.c\
+UTILS = srcs/operation/push.c\
+		srcs/utils/ft_atoi.c\
+		srcs/utils/ft_strlen.c\
+		srcs/utils/ft_strncmp.c\
+		srcs/utils/get_next_line.c\
+		srcs/operation/rotate.c\
+		srcs/operation/rrotate.c\
+		srcs/operation/swap.c
+
+SRCS_CHECKER =	srcs/checker.c\
+				srcs/stack_utils.c
 
 
-O_FILES = $(SRCS_CHECKER:%.c=%.o)
+O_CHECKER = $(SRCS_CHECKER:%.c=%.o)
 
-#FLAGLIB = -L$(LIBDIR)
+O_PS = $(SRCS_PS:%.c=%.o)
 
-all: $(NAME)
+O_FILES = $(UTILS:%.c=%.o)
 
-$(NAME): $(O_FILES)
-			#@make all -C $(LIBDIR)
-			$(CC) $(FLAGS) -o $(NAME) $(O_FILES)
-			@echo "\033[32mCOMPILATION OK\033[0m"
+O_CM =	$(O_FILES)\
+		$(O_CHECKER)\
+		$(O_PS)
+
+#all: $(NAME)
+
+$(PUSH_SWAP): $(O_FILES) $(O_PS)
+			$(CC) $(FLAGS) -o $(PUSH_SWAP) $(O_FILES) $(O_PS)
+			@echo "\033[32mCOMPILATION PUSH_SWAP OK\033[0m"
+
+$(CHECKER): $(O_FILES) $(O_CHECKER)
+			$(CC) $(FLAGS) -o $(CHECKER) $(O_FILES) $(O_CHECKER)
+			@echo "\033[32mCOMPILATION CHECKER OK\033[0m"
+
+all: $(PUSH_SWAP) $(CHECKER)
 
 clean:
-		@rm -rf $(O_FILES) $(LIBBIN)
-			@make clean -C $(LIBDIR)
+		@rm -rf $(O_CM) 
 			@echo "\033[36mCLEAN OK\033[0m"
 
 fclean: clean
 		@rm -rf $(NAME)
-			@make fclean -C $(LIBDIR)
 			@echo "\033[36mFCLEAN OK\033[0m"
 
 lib:

@@ -6,13 +6,11 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 18:12:05 by lobertin          #+#    #+#             */
-/*   Updated: 2021/04/30 18:25:54 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/02 02:12:54 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	print_list(t_stack *list, char *s);
 
 int	*tri	(int *tab, int size)
 {
