@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/02 02:23:12 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/02 04:19:24 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int ac, char **av)
 		av++;
 		ac--;
 	}
-	//printf("%s\n", av[1]);
 	stacks.a = get_list(ac, av);
 	if (read(0, NULL, 0) == 0)
 		stacks = loop_ps(0, stacks, flag);

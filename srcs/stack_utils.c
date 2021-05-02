@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/02 02:23:07 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/02 06:27:50 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,32 @@ int	print_list(t_stack *list, char *s)
 	return (1);
 }
 
+int		check_nb(char *str, t_stack *lst)
+{
+	int		nb;
+	t_stack	*buf;
+
+	buf = lst;
+	nb = ft_atoi(str);
+	while(buf->next)
+	{
+		if (nb == buf->nb)
+			return (0);
+		buf = buf->next;
+	}
+	printf("NUZE\n");
+	nb = 0;
+	if (str[0] == '-' && str[1] != '\0')
+		nb = 1;
+	while (str[nb])
+	{
+		if (!ft_isdigit(str[nb]))
+			return (0);
+		nb++;
+	}
+	return (1);
+}
+
 t_stack	*get_list(int nb, char **av)
 {
 	t_stack	*lst;
@@ -31,16 +57,20 @@ t_stack	*get_list(int nb, char **av)
 	int		i;
 
 	lst = malloc(sizeof(t_stack));
+	lst->next = NULL;
 	buf = lst;
 	i = 1;
 	while (i < nb)
 	{
+		if (!check_nb(av[i], lst))
+			printf("T'es NUL\n");
 		buf->nb = ft_atoi(av[i]);
 		i++;
 		if (i < nb)
 			buf->next = malloc(sizeof(t_stack));
 		else
 			buf->next = NULL;
+
 		buf = buf->next;
 	}
 	return (lst);
@@ -71,6 +101,7 @@ t_stacks	loop_ps(int fd, t_stacks stacks, int flag)
 		{
 			print_list(stacks.a, "A");
 			print_list(stacks.b, "B");
+			printf("\n");
 		}
 		free(str);
 	}

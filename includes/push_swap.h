@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/02 02:29:36 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/02 05:47:56 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_stacks	rrr(t_stacks stacks);
 ** LIB FUNCTIONS
 */
 
+int     ft_isdigit(int c);
 int     ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *str);
 
