@@ -1,6 +1,6 @@
+NAME =			$(CHECKER) $(PUSH_SWAP)
 PUSH_SWAP =		push_swap
 CHECKER =		checker
-NAME =			$(CHECKER) $(PUSH_SWAP)
 FLAGS = -Wall -Wextra -Werror -I includes
 
 CC = @gcc -I includes
@@ -20,7 +20,9 @@ UTILS = srcs/operation/push.c\
 		srcs/utils/ft_isdigit.c\
 		srcs/operation/rotate.c\
 		srcs/operation/rrotate.c\
-		srcs/operation/swap.c
+		srcs/operation/swap.c\
+		srcs/operation/exec_op.c\
+		srcs/error.c
 
 SRCS_CHECKER =	srcs/checker.c\
 				srcs/stack_utils.c
@@ -36,7 +38,7 @@ O_CM =	$(O_FILES)\
 		$(O_CHECKER)\
 		$(O_PS)
 
-#all: $(NAME)
+all: $(NAME)
 
 $(PUSH_SWAP): $(O_FILES) $(O_PS)
 			$(CC) $(FLAGS) -o $(PUSH_SWAP) $(O_FILES) $(O_PS)
@@ -46,7 +48,6 @@ $(CHECKER): $(O_FILES) $(O_CHECKER)
 			$(CC) $(FLAGS) -o $(CHECKER) $(O_FILES) $(O_CHECKER)
 			@echo "\033[32mCOMPILATION CHECKER OK\033[0m"
 
-all: $(PUSH_SWAP) $(CHECKER)
 
 clean:
 		@rm -rf $(O_CM) 

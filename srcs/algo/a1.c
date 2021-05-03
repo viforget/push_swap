@@ -4,8 +4,6 @@ int	find_num(t_stack *lst, int nb);
 int sizeoflist(t_stack *list);
 int	*tri	(int *tab, int size);
 
-
-
 t_stacks coupe (t_stacks stacks, int size, int *tab, int max)
 {
 	int i;
@@ -87,7 +85,6 @@ void a1(t_stacks stacks)
 	}
 	tab = tri(tab, sizea);
     stacks = coupe(stacks, sizea/2, tab, sizea);
-//	sleep(5);
 	stacks = retour(stacks, tab, sizea);
 	printf("pa\n");
 	stacks = pa(stacks);

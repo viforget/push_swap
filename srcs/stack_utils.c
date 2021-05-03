@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/02 06:27:50 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/03 14:19:28 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,19 @@ int		check_nb(char *str, t_stack *lst)
 
 	buf = lst;
 	nb = ft_atoi(str);
-	while(buf->next)
+	while(buf)
 	{
-		if (nb == buf->nb)
-			return (0);
+		if (buf->next && nb == buf->nb)
+			return(print_and_exit("Error : duplicate number in arg\n"));
 		buf = buf->next;
 	}
-	printf("NUZE\n");
 	nb = 0;
 	if (str[0] == '-' && str[1] != '\0')
 		nb = 1;
 	while (str[nb])
 	{
 		if (!ft_isdigit(str[nb]))
-			return (0);
+			return(print_and_exit("Error : non-digit character in arg\n"));
 		nb++;
 	}
 	return (1);
@@ -59,18 +58,20 @@ t_stack	*get_list(int nb, char **av)
 	lst = malloc(sizeof(t_stack));
 	lst->next = NULL;
 	buf = lst;
-	i = 1;
+	i = 0;
 	while (i < nb)
 	{
 		if (!check_nb(av[i], lst))
-			printf("T'es NUL\n");
+			return (NULL);
 		buf->nb = ft_atoi(av[i]);
 		i++;
 		if (i < nb)
+		{
 			buf->next = malloc(sizeof(t_stack));
+			buf->next->next = NULL;
+		}
 		else
 			buf->next = NULL;
-
 		buf = buf->next;
 	}
 	return (lst);
