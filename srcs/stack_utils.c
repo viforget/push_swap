@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/03 14:19:28 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/03 15:09:32 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,30 @@ int	check_list(t_stack *list)
 			return (0);
 	}
 	return (1);
+}
+
+int get_flags(char ***av, int *ac)
+{
+	int flag;
+
+	flag = 0;
+	(*ac)--;
+	av[0]++;
+	while(*ac && (*av)[0][0] == '-')
+	{
+		if (!ft_strcmp("-v", (*av)[0]))
+			flag += 1;
+		else if (!ft_strcmp("-c", (*av)[0]))
+			flag += 2;
+		else if (!ft_isdigit((*av)[0][1]))
+			return (-1);
+		if (!ft_isdigit((*av)[0][1]))
+		{
+			(*ac)--;
+			av[0]++;
+		}
+	}
+	return (flag);
 }
 
 t_stacks	loop_ps(int fd, t_stacks stacks, int flag)

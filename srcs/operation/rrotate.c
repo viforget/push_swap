@@ -6,24 +6,11 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:47 by viforget          #+#    #+#             */
-/*   Updated: 2021/04/30 11:35:14 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/04 14:22:21 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
-/*int 	print_list(t_stack *list)
-{
-	while (list->next)
-	{
-		list = list->next;
-		printf("%d ", list->nb);
-	}
-	printf("\n");
-	return (1);
-}*/
-
 
 t_stacks	rra(t_stacks stacks)
 {

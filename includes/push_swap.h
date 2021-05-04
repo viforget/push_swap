@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/03 14:05:05 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/04 14:58:35 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct	s_stacks
 void	a1(t_stacks stacks);
 void	a2(t_stacks stacks);
 void 	a3(t_stacks stacks);
+void	a_2(t_stacks stacks);
+void	a_3(t_stacks s);
 
 /*
 ** STACK_UTILS
@@ -63,11 +65,13 @@ t_stack		*get_list(int nb, char **av);
 int			check_list(t_stack *list);
 t_stacks	loop_ps(int fd, t_stacks stacks, int flag);
 t_stacks	do_ins(t_stacks stacks, char *ins);
+int			get_flags(char ***av, int *ac);
 
 /*
 ** OPERATIONS
 */
 
+t_stacks	print_op(char *str, t_stacks fc(t_stacks), t_stacks st);
 t_stacks	sa(t_stacks stacks);
 t_stacks	sb(t_stacks stacks);
 t_stacks	ss(t_stacks stacks);
@@ -91,6 +95,7 @@ int		ft_atoi(const char *str);
 /*
 ** ERROR
 */
+
 int print_and_exit(char *str);
 
 #endif
