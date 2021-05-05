@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 14:04:36 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/04 14:58:21 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/05 13:51:19 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int ac, char **av)
 		return (0);
 	stacks.a = get_list(ac, av);
 	if (!stacks.a)
-		return(0); //Doublons
+		return(print_and_exit("Error\n")); //Doublons
 	if (!check_list(stacks.a))
 		a_3(stacks);
 }

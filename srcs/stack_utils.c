@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/03 15:09:32 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/05 13:51:36 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		check_nb(char *str, t_stack *lst)
 	while(buf)
 	{
 		if (buf->next && nb == buf->nb)
-			return(print_and_exit("Error : duplicate number in arg\n"));
+			return(0);
 		buf = buf->next;
 	}
 	nb = 0;
@@ -43,7 +43,7 @@ int		check_nb(char *str, t_stack *lst)
 	while (str[nb])
 	{
 		if (!ft_isdigit(str[nb]))
-			return(print_and_exit("Error : non-digit character in arg\n"));
+			return(0);
 		nb++;
 	}
 	return (1);
