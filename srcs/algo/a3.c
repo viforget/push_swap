@@ -6,41 +6,11 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 18:12:05 by lobertin          #+#    #+#             */
-/*   Updated: 2021/05/02 06:03:04 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/05 14:47:32 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	*tri	(int *tab, int size)
-{
-	int i;
-	int buf;
-
-	i = 0;
-	while (i < size - 1)
-	{
-		if (tab[i] > tab[i + 1])
-		{
-			buf = tab[i];
-			tab[i] = tab[i + 1];
-			tab[i + 1] = buf;
-			if (i > 0)
-				i--;
-		}
-		else
-			i++;
-	}
-	return (tab);
-}
-
-int sizeoflist(t_stack *list)
-{
-	if (list == NULL)
-		return(0);
-	else
-		return(sizeoflist(list->next) + 1);
-}
 
 int	find_num(t_stack *lst, int nb)
 {
@@ -57,7 +27,7 @@ int	find_num(t_stack *lst, int nb)
 	return (-1);
 }
 
-void a3(t_stacks stacks)
+t_stacks a3(t_stacks stacks)
 {
 	int sizea;
 	int *tab;
@@ -99,5 +69,6 @@ void a3(t_stacks stacks)
 		printf("pa\n");
 		stacks = pa(stacks);
 	}
+	return (stacks);
 }
     

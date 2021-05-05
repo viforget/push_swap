@@ -67,7 +67,7 @@ t_stacks retour (t_stacks stacks, int *tab, int size)
 	return(stacks);
 }
 
-void a1(t_stacks stacks)
+t_stacks a1(t_stacks stacks)
 {
 	int sizea;
 	int *tab;
@@ -88,6 +88,7 @@ void a1(t_stacks stacks)
 	stacks = retour(stacks, tab, sizea);
 	printf("pa\n");
 	stacks = pa(stacks);
+	return (stacks);
 	//print_list(stacks.a,"A");
 	//print_list(stacks.b,"B");
 }

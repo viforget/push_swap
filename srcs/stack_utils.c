@@ -6,11 +6,14 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/05 13:51:36 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/05 14:47:02 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+#include <stdio.h>
+#include <stdlib.h>
 
 int	print_list(t_stack *list, char *s)
 {
@@ -43,7 +46,7 @@ int		check_nb(char *str, t_stack *lst)
 	while (str[nb])
 	{
 		if (!ft_isdigit(str[nb]))
-			return(0);
+			return(print_and_exit("CHAR"));
 		nb++;
 	}
 	return (1);
@@ -158,4 +161,54 @@ t_stacks	do_ins(t_stacks stacks, char *ins)
 	if (!ft_strcmp(ins, "rrr"))
 		stacks = rrr(stacks);
 	return (stacks);
+}
+
+int sizeoflist(t_stack *list)
+{
+	if (list == NULL)
+		return(0);
+	else
+		return(sizeoflist(list->next) + 1);
+}
+
+void	*free_stacks(t_stacks stacks)
+{
+
+	t_stack *buf;
+
+	while(stacks.a)
+	{
+		buf = stacks.a;
+		stacks.a = stacks.a->next;
+		free(buf);
+	}
+	while(stacks.b)
+	{
+		buf = stacks.b;
+		stacks.b = stacks.b->next;
+		free(buf);
+	}
+	return (NULL);
+}
+
+int	*tri	(int *tab, int size)
+{
+	int i;
+	int buf;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (tab[i] > tab[i + 1])
+		{
+			buf = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = buf;
+			if (i > 0)
+				i--;
+		}
+		else
+			i++;
+	}
+	return (tab);
 }

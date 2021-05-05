@@ -1,8 +1,6 @@
 #include "push_swap.h"
 
-int sizeoflist(t_stack *list);
-
-void a2(t_stacks stacks)
+t_stacks a2(t_stacks stacks)
 {
 	int i;
 	int size;
@@ -32,4 +30,5 @@ void a2(t_stacks stacks)
 	//print_list(stacks.a, "A");
 	printf("ra\n");
 	stacks = ra(stacks);
+	return (stacks);
 }
