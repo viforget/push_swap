@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:42:46 by lobertin          #+#    #+#             */
-/*   Updated: 2021/05/05 18:24:15 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/07 12:06:36 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	rcheck_list(t_stack *list)
 	return (1);
 }
 
-t_stacks a2b(t_stacks stacks)
+/*t_stacks a2b(t_stacks stacks)
 {
 	int i;
 	int size;
@@ -60,6 +60,27 @@ t_stacks a2b(t_stacks stacks)
 	stacks = rb(stacks);
 	print_list(stacks.b, "B");
 	return (stacks);
+}*/
+
+void	random_name(t_stacks stacks)
+{
+	t_stack *buf; 
+	int 	a;
+	int 	b;
+	int 	cnt;
+
+	cnt = 0;
+	buf = stacks.b;
+	while(buf->next)
+	{
+		cnt++;
+		if (buf->nb > buf->next->nb)
+			b = cnt;
+		if (stacks.a > buf->nb && stacks.a < buf->next->nb)
+			a = cnt;
+		buf = buf->next;
+	}
+	if ()
 }
 
 int		hold_second(t_stack *st, int min, int max)
@@ -93,10 +114,11 @@ t_stacks	no_infinite(t_stacks stacks)
 	int 	max;
 	t_stack	*buf;
 
-	printf("SALUT BB JE SUIS CHAUDE\n");
 	buf = stacks.b;
 	min = stacks.b->nb;
 	max = stacks.b->nb;
+	if (!stacks.a)
+		return (stacks);
 	while(buf)
 	{
 		if (min > buf->nb)
@@ -110,7 +132,7 @@ t_stacks	no_infinite(t_stacks stacks)
 			stacks = print_op("rrb", rrb, stacks);
 	else 
 		while(stacks.b && stacks.b->next && (stacks.a->nb < stacks.b->nb || stacks.a->nb > last_number(stacks.b)))
-			stacks = print_op(" rrb", rrb, stacks);
+			stacks = print_op("rrb", rrb, stacks);
 	return (stacks);
 }
 
@@ -144,20 +166,15 @@ t_stacks a4(t_stacks stacks)
 		{
 			buff = stacks.a;
 			x = 0;
-			while (buff->nb < tab[(sizea / DIV) * i] || buff->nb > tab[(sizea / DIV) * (i + 1)])
+			while (buff && (buff->nb < tab[(sizea / DIV) * i] || buff->nb > tab[(sizea / DIV) * (i + 1)]))
 			{
-				printf("\n\nTEST\n\n");
 				x++;
 				buff = buff->next;
 			}
 			x2 = sizea - hold_second(stacks.a, (sizea / DIV) * i, (sizea / DIV) * (i + 1)) - 1;
-			printf("%d %d\n", x, x2);
 			if (x2 > x)
 				while (x--)
-				{
-					printf("%d\n", x);
 					stacks = print_op("ra", ra, stacks);
-				}
 			else
 				while (x2--)
 					stacks = print_op("rra", rra, stacks);
@@ -166,9 +183,13 @@ t_stacks a4(t_stacks stacks)
 			stacks = print_op("pb", pb, stacks);
 			j++;
 		}
-		print_list(stacks.a, "A");
-		print_list(stacks.b, "B");
 		i++;
 	}
+	while (stacks.b->nb != tab[sizea - 1])
+		stacks = print_op("rb", rb, stacks);
+	while (stacks.b)
+		stacks = print_op("pa", pa, stacks);
+	print_list(stacks.a, "A");
+	print_list(stacks.b, "B");
 	return(stacks);
 }
