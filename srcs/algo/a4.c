@@ -57,15 +57,15 @@ t_stacks	scroll_b(t_stacks stacks)
 	while(buf->next)
 	{
 		cnt++;
-		if (buf->nb > buf->next->nb)
+		if (buf->nb < buf->next->nb)
 			b = cnt - 1;
-		if (stacks.a->nb > buf->nb && stacks.a->nb < buf->next->nb)
+		if (stacks.a->nb < buf->nb && stacks.a->nb > buf->next->nb)
 			a = cnt - 1;
 		buf = buf->next;
 	}
-	if (buf->nb > stacks.b->nb)
+	if (buf->nb < stacks.b->nb)
 		b = cnt;
-	if (stacks.a->nb > buf->nb && stacks.a->nb < stacks.b->nb)
+	if (stacks.a->nb < buf->nb && stacks.a->nb > stacks.b->nb)
 			a = 0;
 	if (a == -1)
 		if (b  * 2 < (cnt * 2) / 2)
@@ -186,7 +186,7 @@ t_stacks a4(t_stacks stacks)
 		stacks = print_op("rb", rb, stacks);
 	while (stacks.b)
 		stacks = print_op("pa", pa, stacks);
-	print_list(stacks.a, "A");
-	print_list(stacks.b, "B");
+	//print_list(stacks.a, "A");
+	//print_list(stacks.b, "B");
 	return(stacks);
 }
