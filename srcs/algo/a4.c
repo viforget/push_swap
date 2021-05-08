@@ -104,34 +104,6 @@ int		last_number(t_stack *stack)
 	return (last_number(stack->next));
 }
 
-t_stacks	no_infinite(t_stacks stacks)
-{
-	int		min;
-	int 	max;
-	t_stack	*buf;
-
-	buf = stacks.b;
-	min = stacks.b->nb;
-	max = stacks.b->nb;
-	if (!stacks.a)
-		return (stacks);
-	while(buf)
-	{
-		if (min > buf->nb)
-			min = buf->nb;
-		if (max < buf->nb)
-			max = buf->nb;
-		buf = buf->next;
-	}
-	if (stacks.a->nb < min || stacks.a->nb > max)
-		while (stacks.b->nb != max)
-			stacks = print_op("rrb", rrb, stacks);
-	else
-		while(stacks.b && stacks.b->next && (stacks.a->nb < stacks.b->nb || stacks.a->nb > last_number(stacks.b)))
-			stacks = print_op("rrb", rrb, stacks);
-	return (stacks);
-}
-
 t_stacks a4(t_stacks stacks)
 {
 	int		sizea;
