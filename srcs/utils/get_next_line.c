@@ -12,6 +12,8 @@
 
 #include "get_next_line.h"
 
+#define OPEN_MAX 2048
+
 static size_t	find_n(char str[])
 {
 	size_t	n;

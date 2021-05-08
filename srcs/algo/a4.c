@@ -28,59 +28,55 @@ int	rcheck_list(t_stack *list)
 	return (1);
 }
 
-/*t_stacks a2b(t_stacks stacks)
+t_stacks rrotate_until(t_stacks stacks, int nb)
 {
-	int i;
-	int size;
-
-	i = 0;
-	size = sizeoflist(stacks.b);
-	while (!rcheck_list(stacks.b) && i < size - 1)
-	{
-		if (stacks.b->nb < stacks.b->next->nb)
-		{
-			printf("sb\n");
-			stacks = sb(stacks);
-			if (i > 0)
-			{
-				i--;
-				printf("rrb\n");
-				stacks = rrb(stacks);
-			}
-		}
-		else
-		{
-			i++;
-			printf("rb\n");
-			stacks = rb(stacks);
-		}
-	//print_list(stacks.b, "B");
-	}
-	printf("rb\n");
-	stacks = rb(stacks);
-	print_list(stacks.b, "B");
+	while (nb-- > 0)
+		stacks = print_op("rrb", rrb, stacks);
 	return (stacks);
-}*/
+}
 
-void	random_name(t_stacks stacks)
+t_stacks	rotate_until(t_stacks stacks, int nb)
 {
-	t_stack *buf; 
+	while (nb-- > 0)
+		stacks = print_op("rb", rb, stacks);
+	return (stacks);
+}
+
+t_stacks	scroll_b(t_stacks stacks)
+{
+	t_stack *buf;
 	int 	a;
 	int 	b;
 	int 	cnt;
 
-	cnt = 0;
+
+	cnt = 1;
+	a = -1;
+	b = 0;
 	buf = stacks.b;
 	while(buf->next)
 	{
 		cnt++;
 		if (buf->nb > buf->next->nb)
-			b = cnt;
-		if (stacks.a > buf->nb && stacks.a < buf->next->nb)
-			a = cnt;
+			b = cnt - 1;
+		if (stacks.a->nb > buf->nb && stacks.a->nb < buf->next->nb)
+			a = cnt - 1;
 		buf = buf->next;
 	}
-	if ()
+	if (buf->nb > stacks.b->nb)
+		b = cnt;
+	if (stacks.a->nb > buf->nb && stacks.a->nb < stacks.b->nb)
+			a = 0;
+	if (a == -1)
+		if (b  * 2 < (cnt * 2) / 2)
+			stacks = rotate_until(stacks, b);
+		else
+			stacks = rrotate_until(stacks, cnt - b);
+	else if (a  * 2 < (cnt * 2) / 2)
+		stacks = rotate_until(stacks, a);
+	else
+		stacks = rrotate_until(stacks, cnt - a);
+	return (stacks);
 }
 
 int		hold_second(t_stack *st, int min, int max)
@@ -130,7 +126,7 @@ t_stacks	no_infinite(t_stacks stacks)
 	if (stacks.a->nb < min || stacks.a->nb > max)
 		while (stacks.b->nb != max)
 			stacks = print_op("rrb", rrb, stacks);
-	else 
+	else
 		while(stacks.b && stacks.b->next && (stacks.a->nb < stacks.b->nb || stacks.a->nb > last_number(stacks.b)))
 			stacks = print_op("rrb", rrb, stacks);
 	return (stacks);
@@ -145,7 +141,7 @@ t_stacks a4(t_stacks stacks)
 	int		x;
 	int		x2;
 	t_stack *buff;
-	
+
 	sizea = sizeoflist(stacks.a);
 	tab = malloc(sizeof(int)* sizea);
 	i = 0;
@@ -157,7 +153,7 @@ t_stacks a4(t_stacks stacks)
 		buff = buff->next;
 	}
 	tab = tri(tab, sizea);
-	
+
 	i = 0;
 	j = 0;
 	while (i <= 11)
@@ -178,14 +174,15 @@ t_stacks a4(t_stacks stacks)
 			else
 				while (x2--)
 					stacks = print_op("rra", rra, stacks);
-			if (stacks.b)
-				stacks = no_infinite(stacks);
-			stacks = print_op("pb", pb, stacks);
+			if (stacks.b && stacks.a)
+				stacks = scroll_b(stacks);
+			if (stacks.a)
+				stacks = print_op("pb", pb, stacks);
 			j++;
 		}
 		i++;
 	}
-	while (stacks.b->nb != tab[sizea - 1])
+	while (stacks.b && stacks.b->nb != tab[sizea - 1])
 		stacks = print_op("rb", rb, stacks);
 	while (stacks.b)
 		stacks = print_op("pa", pa, stacks);
