@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 14:04:36 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 10:45:49 by lobertin         ###   ########.fr       */
+/*   Updated: 2021/05/11 13:46:22 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int	main(int ac, char **av)
 		return (0);
 	stacks.a = get_list(ac, av);
 	if (!stacks.a)
+	{
+		free_stacks(stacks);
 		return (print_and_exit("Error\n"));
+	}
 	if (!check_list(stacks.a))
 		stacks = find_algo(stacks);
 	free_stacks(stacks);

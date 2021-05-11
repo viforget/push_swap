@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 10:56:36 by lobertin         ###   ########.fr       */
+/*   Updated: 2021/05/11 14:08:19 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@ int	print_list(t_stack *list, char *s)
 
 int	check_nb(char *str, t_stack *lst)
 {
-	int		nb;
+	long	nb;
 	t_stack	*buf;
+	int		i;
 
 	buf = lst;
-	nb = ft_atoi(str);
+	nb = ft_atol(str);
+	if (nb > INT_MAX || nb < INT_MIN)
+		return (0);
 	while (buf)
 	{
 		if (buf->next && nb == buf->nb)
@@ -45,7 +48,7 @@ int	check_nb(char *str, t_stack *lst)
 		nb = 1;
 	while (str[nb])
 	{
-		if (!ft_isdigit(str[nb]))
+		if (!ft_isdigit(str[nb]) || nb > 10)
 			return (0);
 		nb++;
 	}
@@ -66,7 +69,7 @@ t_stack	*get_list(int nb, char **av)
 	{
 		if (!check_nb(av[i], lst))
 			return (NULL);
-		buf->nb = ft_atoi(av[i]);
+		buf->nb = ft_atol(av[i]);
 		i++;
 		if (i < nb)
 		{
@@ -97,11 +100,13 @@ int	check_list(t_stack *list)
 int	get_flags(char ***av, int *ac)
 {
 	int	flag;
+	int exit;
 
+	exit = 0;
 	flag = 0;
 	(*ac)--;
 	av[0]++;
-	while (*ac && (*av)[0][0] == '-')
+	while (*ac && (*av)[0][0] == '-' && exit == 0)
 	{
 		if (!ft_strcmp("-v", (*av)[0]))
 			flag += 1;
@@ -114,6 +119,8 @@ int	get_flags(char ***av, int *ac)
 			(*ac)--;
 			av[0]++;
 		}
+		else
+			exit = 1;
 	}
 	return (flag);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 12:11:43 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 10:32:27 by lobertin         ###   ########.fr       */
+/*   Updated: 2021/05/11 14:04:17 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
 	int					x;
 	unsigned long long	n_final;
@@ -30,8 +30,8 @@ int	ft_atoi(const char *str)
 	{
 		n_final = n_final * 10 + (str[x++] - 48);
 		if (n_final > 2147483648)
-			return (((negatif - 1) * -1) / 2);
+			return (n_final * negatif);
 	}
 	n_final = n_final * negatif;
-	return ((int)n_final);
+	return (n_final);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 09:49:03 by lobertin         ###   ########.fr       */
+/*   Updated: 2021/05/11 13:56:01 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_stacks	rrr(t_stacks stacks);
 
 int			ft_isdigit(int c);
 int			ft_strcmp(const char *s1, const char *s2);
-int			ft_atoi(const char *str);
+long		ft_atol(const char *str);
 
 /*
 ** ERROR
