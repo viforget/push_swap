@@ -3,48 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 12:11:43 by viforget          #+#    #+#             */
-/*   Updated: 2021/04/28 18:55:00 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/11 10:32:27 by lobertin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-static int	check_sp(char c)
+int	ft_atoi(const char *str)
 {
-	if (c == ' ' || c == '\t' || c == '\v' || c == '\n' ||
-			c == '\r' || c == '\f')
-		return (1);
-	return (0);
-}
+	int					x;
+	unsigned long long	n_final;
+	int					negatif;
 
-int			ft_atoi(const char *str)
-{
-	int		a;
-	long	nb;
-	char	neg;
-
-	a = 0;
-	nb = 0;
-	neg = 0;
-	while (check_sp(str[a]))
-		a++;
-	if (str[a] == '-')
-		neg = 1;
-	if (str[a] == '-' || str[a] == '+')
-		a++;
-	while ((str[a] >= '0') && (str[a] <= '9'))
+	n_final = 0;
+	negatif = 1;
+	x = 0;
+	while ((str[x] <= 9 && str[x] >= 13 ) || str[x] == ' ')
+		x++;
+	if (str[x] == '-' || str[x] == '+')
 	{
-		if ((unsigned long)nb * 10 + (str[a] - '0')
-				> (unsigned long)(LONG_MAX + neg))
-			return (neg ? 0 : -1);
-		nb *= 10;
-		nb += ((int)str[a] - '0');
-		a++;
+		if (str[x++] == '-')
+			negatif = negatif * -1;
 	}
-	if (neg == 1)
-		return (-nb);
-	return (nb);
+	while (str[x] <= '9' && str[x] >= '0' && str[x])
+	{
+		n_final = n_final * 10 + (str[x++] - 48);
+		if (n_final > 2147483648)
+			return (((negatif - 1) * -1) / 2);
+	}
+	n_final = n_final * negatif;
+	return ((int)n_final);
 }

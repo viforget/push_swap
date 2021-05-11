@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/05 14:47:02 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/11 10:56:36 by lobertin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int	print_list(t_stack *list, char *s)
 	return (1);
 }
 
-int		check_nb(char *str, t_stack *lst)
+int	check_nb(char *str, t_stack *lst)
 {
 	int		nb;
 	t_stack	*buf;
 
 	buf = lst;
 	nb = ft_atoi(str);
-	while(buf)
+	while (buf)
 	{
 		if (buf->next && nb == buf->nb)
-			return(0);
+			return (0);
 		buf = buf->next;
 	}
 	nb = 0;
@@ -46,7 +46,7 @@ int		check_nb(char *str, t_stack *lst)
 	while (str[nb])
 	{
 		if (!ft_isdigit(str[nb]))
-			return(print_and_exit("CHAR"));
+			return (0);
 		nb++;
 	}
 	return (1);
@@ -94,14 +94,14 @@ int	check_list(t_stack *list)
 	return (1);
 }
 
-int get_flags(char ***av, int *ac)
+int	get_flags(char ***av, int *ac)
 {
-	int flag;
+	int	flag;
 
 	flag = 0;
 	(*ac)--;
 	av[0]++;
-	while(*ac && (*av)[0][0] == '-')
+	while (*ac && (*av)[0][0] == '-')
 	{
 		if (!ft_strcmp("-v", (*av)[0]))
 			flag += 1;
@@ -140,49 +140,48 @@ t_stacks	do_ins(t_stacks stacks, char *ins)
 {
 	if (!ft_strcmp(ins, "sa"))
 		stacks = sa(stacks);
-	if (!ft_strcmp(ins, "sb"))
+	else if (!ft_strcmp(ins, "sb"))
 		stacks = sb(stacks);
-	if (!ft_strcmp(ins, "ss"))
+	else if (!ft_strcmp(ins, "ss"))
 		stacks = ss(stacks);
-	if (!ft_strcmp(ins, "pa"))
+	else if (!ft_strcmp(ins, "pa"))
 		stacks = pa(stacks);
-	if (!ft_strcmp(ins, "pb"))
+	else if (!ft_strcmp(ins, "pb"))
 		stacks = pb(stacks);
-	if (!ft_strcmp(ins, "ra"))
+	else if (!ft_strcmp(ins, "ra"))
 		stacks = ra(stacks);
-	if (!ft_strcmp(ins, "rb"))
+	else if (!ft_strcmp(ins, "rb"))
 		stacks = rb(stacks);
-	if (!ft_strcmp(ins, "rr"))
+	else if (!ft_strcmp(ins, "rr"))
 		stacks = rr(stacks);
-	if (!ft_strcmp(ins, "rra"))
+	else if (!ft_strcmp(ins, "rra"))
 		stacks = rra(stacks);
-	if (!ft_strcmp(ins, "rrb"))
+	else if (!ft_strcmp(ins, "rrb"))
 		stacks = rrb(stacks);
-	if (!ft_strcmp(ins, "rrr"))
+	else if (!ft_strcmp(ins, "rrr"))
 		stacks = rrr(stacks);
 	return (stacks);
 }
 
-int sizeoflist(t_stack *list)
+int	sizeoflist(t_stack *list)
 {
 	if (list == NULL)
-		return(0);
+		return (0);
 	else
-		return(sizeoflist(list->next) + 1);
+		return (sizeoflist(list->next) + 1);
 }
 
 void	*free_stacks(t_stacks stacks)
 {
+	t_stack	*buf;
 
-	t_stack *buf;
-
-	while(stacks.a)
+	while (stacks.a)
 	{
 		buf = stacks.a;
 		stacks.a = stacks.a->next;
 		free(buf);
 	}
-	while(stacks.b)
+	while (stacks.b)
 	{
 		buf = stacks.b;
 		stacks.b = stacks.b->next;
@@ -191,10 +190,10 @@ void	*free_stacks(t_stacks stacks)
 	return (NULL);
 }
 
-int	*tri	(int *tab, int size)
+int *tri(int *tab, int size)
 {
-	int i;
-	int buf;
+	int	i;
+	int	buf;
 
 	i = 0;
 	while (i < size - 1)

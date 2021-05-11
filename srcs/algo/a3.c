@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   a3.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/28 18:12:05 by lobertin          #+#    #+#             */
-/*   Updated: 2021/05/05 14:47:32 by viforget         ###   ########.fr       */
+/*   Created: 2021/05/11 10:16:49 by lobertin          #+#    #+#             */
+/*   Updated: 2021/05/11 10:21:13 by lobertin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 int	find_num(t_stack *lst, int nb)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(lst)
+	while (lst)
 	{
 		if (lst->nb == nb)
-			return(i);
+			return (i);
 		i++;
 		lst = lst->next;
 	}
 	return (-1);
 }
 
-t_stacks a3(t_stacks stacks)
+t_stacks	a3(t_stacks stacks)
 {
-	int sizea;
-	int *tab;
-	int i;
-	t_stack *buff;
-	
+	int		sizea;
+	int		*tab;
+	int		i;
+	t_stack	*buff;
+
 	sizea = sizeoflist(stacks.a);
 	tab = malloc(sizeof(int)* sizea);
 	i = 0;
@@ -50,25 +50,14 @@ t_stacks a3(t_stacks stacks)
 		buff = stacks.a;
 		if (find_num(stacks.a, tab[i]) < (sizea - i) / 2)
 			while (stacks.a->nb != tab[i])
-			{
-				printf("ra\n");
-				stacks = ra(stacks);
-			}
-		else	
+				stacks = print_op("ra", ra, stacks);
+		else
 			while (stacks.a->nb != tab[i])
-			{
-				printf("rra\n");
-				stacks = rra(stacks);
-			}
+				stacks = print_op("rra", rra, stacks);
 		i++;
-		printf("pb\n");
-		stacks = pb(stacks);
+		stacks = print_op("pb", pb, stacks);
 	}
 	while (stacks.b != NULL)
-	{
-		printf("pa\n");
-		stacks = pa(stacks);
-	}
+		stacks = print_op("pa", pa, stacks);
 	return (stacks);
 }
-    

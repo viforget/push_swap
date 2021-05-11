@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/05 14:47:18 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/11 09:49:03 by lobertin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@
 ** STRUCTURES
 */
 
-typedef struct	s_stack
+typedef struct s_stack
 {
-	int			nb;
+	int				nb;
 	struct s_stack	*next;
 }				t_stack;
 
-typedef struct	s_stacks
+typedef struct s_stacks
 {
 	t_stack	*a;
 	t_stack	*b;
@@ -52,8 +52,8 @@ typedef struct	s_stacks
 
 t_stacks	a1(t_stacks stacks);
 t_stacks	a2(t_stacks stacks);
-t_stacks 	a3(t_stacks stacks);
-t_stacks 	a4(t_stacks stacks);
+t_stacks	a3(t_stacks stacks);
+t_stacks	a4(t_stacks stacks);
 t_stacks	a_2(t_stacks stacks);
 t_stacks	a_3(t_stacks s);
 
@@ -92,14 +92,14 @@ t_stacks	rrr(t_stacks stacks);
 ** LIB FUNCTIONS
 */
 
-int     ft_isdigit(int c);
-int     ft_strcmp(const char *s1, const char *s2);
-int		ft_atoi(const char *str);
+int			ft_isdigit(int c);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_atoi(const char *str);
 
 /*
 ** ERROR
 */
 
-int print_and_exit(char *str);
+int			print_and_exit(char *str);
 
 #endif

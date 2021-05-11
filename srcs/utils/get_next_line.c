@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
+/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 17:14:10 by viforget          #+#    #+#             */
-/*   Updated: 2021/02/24 10:10:50 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/11 10:25:22 by lobertin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-#define OPEN_MAX 2048
 
 static size_t	find_n(char str[])
 {
@@ -24,7 +22,7 @@ static size_t	find_n(char str[])
 	return (n);
 }
 
-static char		*ft_strjoind(char *s1, char const *s2)
+static char	*ft_strjoind(char *s1, char const *s2)
 {
 	int		i;
 	int		i2;
@@ -48,7 +46,7 @@ static char		*ft_strjoind(char *s1, char const *s2)
 	return (str);
 }
 
-static int		fill_zero(char str[], ssize_t nb)
+static int	fill_zero(char str[], ssize_t nb)
 {
 	if (nb >= 0)
 		while (nb <= BUFFER_SIZE)
@@ -58,7 +56,7 @@ static int		fill_zero(char str[], ssize_t nb)
 
 static	void	cut_str(char str[], size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (n < BUFFER_SIZE)
@@ -67,7 +65,7 @@ static	void	cut_str(char str[], size_t n)
 		str[i++] = 0;
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	buf[OPEN_MAX][BUFFER_SIZE + 1];
 	ssize_t		rd;

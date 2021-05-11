@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/07 11:50:13 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/11 11:02:18 by lobertin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int ac, char **av)
 		return (1);
 	flag = get_flags(&av, &ac);
 	stacks.a = get_list(ac, av);
-	if(!stacks.a)
-		return (0);
+	if (!stacks.a)
+		return (print_and_exit("Error\n"));
 	if (read(0, NULL, 0) == 0)
 		stacks = loop_ps(0, stacks, flag);
 	else
@@ -33,7 +33,5 @@ int	main(int ac, char **av)
 		printf("OK\n");
 	else
 		printf("KO\n");
-	print_list(stacks.a, "A");
-	print_list(stacks.b, "B");
 	return (1);
 }
