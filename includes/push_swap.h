@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 13:56:01 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/11 15:31:49 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,14 @@ t_stacks	rrr(t_stacks stacks);
 int			ft_isdigit(int c);
 int			ft_strcmp(const char *s1, const char *s2);
 long		ft_atol(const char *str);
+char		**ft_split(char const *s, char c);
+char		*ft_strrep(char *str, char c, char r);
 
 /*
 ** ERROR
 */
 
 int			print_and_exit(char *str);
+void	free_and_exit(t_stacks stacks);
 
 #endif

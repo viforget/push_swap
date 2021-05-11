@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 11:02:18 by lobertin         ###   ########.fr       */
+/*   Updated: 2021/05/11 17:31:02 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int	main(int ac, char **av)
 		printf("OK\n");
 	else
 		printf("KO\n");
+
+	free_stacks(stacks);
 	return (1);
 }

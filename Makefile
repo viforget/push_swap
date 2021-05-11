@@ -20,6 +20,8 @@ UTILS = srcs/operation/push.c\
 		srcs/utils/ft_strncmp.c\
 		srcs/utils/get_next_line.c\
 		srcs/utils/ft_isdigit.c\
+		srcs/utils/ft_split.c\
+		srcs/utils/ft_strrep.c\
 		srcs/operation/rotate.c\
 		srcs/operation/rrotate.c\
 		srcs/operation/swap.c\

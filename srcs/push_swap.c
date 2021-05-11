@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 14:04:36 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 13:46:22 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/11 15:50:02 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int ac, char **av)
 	}
 	if (!check_list(stacks.a))
 		stacks = find_algo(stacks);
+	//print_list(stacks.a, "A");
 	free_stacks(stacks);
 	return (1);
 }

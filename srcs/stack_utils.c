@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 14:08:19 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/11 18:02:57 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,43 @@ t_stack	*get_list(int nb, char **av)
 	t_stack	*lst;
 	t_stack	*buf;
 	int		i;
+	int		j;
+	char 	**tab;
+
+	lst = malloc(sizeof(t_stack));
+	lst->next = NULL;
+	buf = lst;
+	i = 0;
+	while(i < nb)
+	{
+		av[i] = ft_strrep(av[i], '\t', ' ');
+		tab = ft_split(av[i], ' ');
+		j = 0;
+		while (tab[j])
+		{
+			if (!check_nb(tab[j], lst))
+				return (NULL);
+			buf->nb = ft_atol(tab[j]);
+			if (i + 1 < nb || tab[j + 1])
+			{
+				buf->next = malloc(sizeof(t_stack));
+				buf->next->next = NULL;
+			}
+			else
+				buf->next = NULL;
+			buf = buf->next;
+			j++;
+		}
+		i++;
+	}
+	return (lst);
+}
+
+/*t_stack	*get_list(int nb, char **av)
+{
+	t_stack	*lst;
+	t_stack	*buf;
+	int		i;
 
 	lst = malloc(sizeof(t_stack));
 	lst->next = NULL;
@@ -81,7 +118,7 @@ t_stack	*get_list(int nb, char **av)
 		buf = buf->next;
 	}
 	return (lst);
-}
+}*/
 
 int	check_list(t_stack *list)
 {
@@ -143,6 +180,8 @@ t_stacks	loop_ps(int fd, t_stacks stacks, int flag)
 	return (stacks);
 }
 
+
+
 t_stacks	do_ins(t_stacks stacks, char *ins)
 {
 	if (!ft_strcmp(ins, "sa"))
@@ -167,6 +206,8 @@ t_stacks	do_ins(t_stacks stacks, char *ins)
 		stacks = rrb(stacks);
 	else if (!ft_strcmp(ins, "rrr"))
 		stacks = rrr(stacks);
+	else
+		free_and_exit(stacks);
 	return (stacks);
 }
 
