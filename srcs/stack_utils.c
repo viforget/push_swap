@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 18:02:57 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/11 18:06:31 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ int	check_nb(char *str, t_stack *lst)
 	return (1);
 }
 
+void	free_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 t_stack	*get_list(int nb, char **av)
 {
 	t_stack	*lst;
@@ -87,6 +100,7 @@ t_stack	*get_list(int nb, char **av)
 			buf = buf->next;
 			j++;
 		}
+		free_tab(tab);
 		i++;
 	}
 	return (lst);
