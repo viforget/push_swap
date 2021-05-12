@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   a4.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:42:46 by lobertin          #+#    #+#             */
-/*   Updated: 2021/05/11 10:13:55 by lobertin         ###   ########.fr       */
+/*   Updated: 2021/05/12 17:55:10 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,5 +155,6 @@ t_stacks	a4(t_stacks stacks)
 		stacks = print_op("rb", rb, stacks);
 	while (stacks.b)
 		stacks = print_op("pa", pa, stacks);
+	free(tab);
 	return (stacks);
 }

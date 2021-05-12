@@ -12,7 +12,8 @@ SRCS_PS = srcs/push_swap.c\
 			srcs/algo/a2.c\
 			srcs/algo/a3.c\
 			srcs/algo/a4.c\
-			srcs/algo/a_2_3.c
+			srcs/algo/a_2_3.c\
+			srcs/algo/a_5_6.c
 
 UTILS = srcs/operation/push.c\
 		srcs/utils/ft_atoi.c\

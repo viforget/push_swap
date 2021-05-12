@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/12 15:28:23 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/12 18:32:35 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_stacks	a3(t_stacks stacks);
 t_stacks	a4(t_stacks stacks);
 t_stacks	a_2(t_stacks stacks);
 t_stacks	a_3(t_stacks s);
+t_stacks	a_4_5_6(t_stacks stacks);
 
 /*
 ** STACK_UTILS
