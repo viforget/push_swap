@@ -12,7 +12,7 @@ t_stacks	a2(t_stacks stacks)
 		if (stacks.a->nb > stacks.a->next->nb)
 		{
 			stacks = print_op("sa", sa, stacks);
-			if (i > 0)
+			if (i > 0 && last_number(stacks.a) > stacks.a->nb)
 			{
 				i--;
 				stacks = print_op("rra", rra, stacks);
