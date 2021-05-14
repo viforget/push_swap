@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 18:06:31 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/14 18:11:39 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,27 @@ t_stack	*get_list(int nb, char **av)
 	return (lst);
 }*/
 
+
+int	*lst_to_tab(t_stack *lst, int opt)
+{
+	int *tab;
+	int size;
+	int i;
+
+	i = 0;
+	size = sizeoflist(lst);
+	tab = malloc(sizeof(int)* size);
+	while(lst->next)
+	{
+		tab[i] = lst->nb;
+		lst = lst->next;
+		i++;
+	}
+	if (opt == 1)
+		tab = tri(tab, size);
+	return (tab);
+}
+
 int	check_list(t_stack *list)
 {
 	int	nb;
@@ -231,6 +252,15 @@ int	sizeoflist(t_stack *list)
 		return (0);
 	else
 		return (sizeoflist(list->next) + 1);
+}
+
+int	nb_in_list(t_stack *lst, int nb)
+{
+	while (lst && nb-- > 0)
+		lst = lst->next;
+	if (!lst)
+		return (0);
+	return (lst->nb);
 }
 
 void	*free_stacks(t_stacks stacks)

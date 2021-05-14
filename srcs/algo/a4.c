@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:42:46 by lobertin          #+#    #+#             */
-/*   Updated: 2021/05/12 17:55:10 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/14 18:26:27 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_stacks	rotate_until(t_stacks stacks, int nb)
 	return (stacks);
 }
 
-t_stacks	scroll_b(t_stacks stacks)
+t_stacks	scroll_b(t_stacks stacks, int nb)
 {
 	t_stack	*buf;
 	int		a;
@@ -56,14 +56,16 @@ t_stacks	scroll_b(t_stacks stacks)
 		cnt++;
 		if (buf->nb < buf->next->nb)
 			b = cnt - 1;
-		if (stacks.a->nb < buf->nb && stacks.a->nb > buf->next->nb)
+		if (nb < buf->nb && nb > buf->next->nb)
 			a = cnt - 1;
 		buf = buf->next;
 	}
 	if (buf->nb < stacks.b->nb)
 		b = cnt;
-	if (stacks.a->nb < buf->nb && stacks.a->nb > stacks.b->nb)
+	if (nb < buf->nb && nb > stacks.b->nb)
 		a = 0;
+	//printf("b %d %d %d\n", cnt, a == -1 ? b : a, nb);
+	//print_list(stacks.b, "BB");
 	if (a == -1)
 	{
 		if (b * 2 < (cnt * 2) / 2)
@@ -78,9 +80,72 @@ t_stacks	scroll_b(t_stacks stacks)
 	return (stacks);
 }
 
+int		get_a(t_stack *st, int nb)
+{
+	int cnt;
+	int a;
+	int b;
+
+	a = -1;
+	b = 0;
+	cnt = 0;
+	if (!st)
+		return (0);
+	while(st && st->next)
+	{
+		cnt++;
+		if (st->nb < st->next->nb)
+			b = cnt - 1;
+		if (nb < st->nb && nb > st->next->nb)
+			a = cnt - 1;
+		st = st->next;
+	}
+	if (st->nb < st->nb)
+		b = cnt;
+	if (nb < st->nb && nb > st->nb)
+		a = 0;
+	if (a == -1)
+		return (b);
+	return (a);
+}
+
+t_stacks	scroll_a(t_stacks stacks, int x, int dir)
+{
+	int nb;
+	int cnt;
+	int a;
+
+	if (dir == 1)
+		nb = nb_in_list(stacks.a, x);
+	else
+		nb = nb_in_list(stacks.a, sizeoflist(stacks.a) - x);
+	a = get_a(stacks.b, nb);
+	cnt = sizeoflist(stacks.b);
+	//printf("a %d %d %d %d\n", cnt, a, x, nb);
+	//print_list(stacks.a, "AA");
+	//print_list(stacks.b, "BA");
+	while(x--)
+	{
+		if (dir == 1)
+		{
+			if (a * 2 < (cnt * 2) / 2 && a-- > 0)
+				stacks = print_op("rr", rr, stacks);
+			else
+				stacks = print_op("ra", ra, stacks);
+		}
+		else
+		{
+			if (a * 2 >= (cnt * 2) / 2 && a++ < cnt)
+				stacks = print_op("rrr", rrr, stacks);
+			else
+				stacks = print_op("rra", rra, stacks);
+		}
+	}
+	return (stacks);
+}
+
 int	hold_second(t_stack *st, int min, int max)
 {
-	int	nb;
 	int	i;
 	int	x;
 
@@ -91,6 +156,20 @@ int	hold_second(t_stack *st, int min, int max)
 		if (st->nb >= min && st->nb < max)
 			x = i;
 		i++;
+		st = st->next;
+	}
+	return (i - x);
+}
+
+int	hold_first(t_stack *st, int min, int max)
+{
+	int	x;
+
+	x = 0;
+	//printf("%d %d\n", min, max);
+	while (st && (st->nb < min || st->nb > max))
+	{
+		x++;
 		st = st->next;
 	}
 	return (x);
@@ -111,50 +190,38 @@ t_stacks	a4(t_stacks stacks)
 	int		j;
 	int		x;
 	int		x2;
-	t_stack	*buff;
 
 	sizea = sizeoflist(stacks.a);
-	tab = malloc(sizeof(int)* sizea);
-	i = 0;
-	buff = stacks.a;
-	while (buff != NULL)
-	{
-		tab[i++] = buff->nb;
-		buff = buff->next;
-	}
-	tab = tri(tab, sizea);
+	tab = lst_to_tab(stacks.a, 1);
 	i = 0;
 	j = 0;
 	while (i <= 11)
 	{
 		while (j < sizea / 11 * (i + 1))
 		{
-			buff = stacks.a;
-			x = 0;
-			while (buff && (buff->nb < tab[(sizea / 11) * i] || buff->nb > tab[(sizea / 11) * (i + 1)]))
-			{
-				x++;
-				buff = buff->next;
-			}
-			x2 = sizea - hold_second(stacks.a, (sizea / 11) * i, (sizea / 11) * (i + 1)) - 1;
+			x = hold_first(stacks.a, tab[(sizea / 11) * i], tab[(sizea / 11) * (i + 1)]);
+			x2 = hold_second(stacks.a, tab[(sizea / 11) * i], tab[(sizea / 11) * (i + 1)]);
 			if (x2 > x)
-				while (x--)
-					stacks = print_op("ra", ra, stacks);
+				stacks = scroll_a(stacks, x, 1);
+				//while (x--)
+				//	stacks = print_op("ra", ra, stacks);
 			else
-				while (x2--)
-					stacks = print_op("rra", rra, stacks);
+				stacks = scroll_a(stacks, x2, 2);
+				//while (x2--)
+				//	stacks = print_op("rra", rra, stacks);
 			if (stacks.b && stacks.a)
-				stacks = scroll_b(stacks);
-			if (stacks.a)
+			{
+				stacks = scroll_b(stacks, stacks.a->nb);
+			}
+
+			if (stacks.a) //PAS NECESSAIRE
 				stacks = print_op("pb", pb, stacks);
 			j++;
 		}
 		i++;
 	}
-	while (stacks.b && stacks.b->nb != tab[sizea - 1])
-		stacks = print_op("rb", rb, stacks);
+	stacks = scroll_b(stacks, tab[0] - 1);
 	while (stacks.b)
 		stacks = print_op("pa", pa, stacks);
-	free(tab);
 	return (stacks);
 }

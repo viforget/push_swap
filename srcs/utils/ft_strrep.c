@@ -2,10 +2,10 @@
 
 char	*ft_strrep(char *str, char c, char r)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == c)
 			str[i] = r;

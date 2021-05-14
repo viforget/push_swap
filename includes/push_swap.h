@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/12 18:32:35 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/14 15:23:09 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int			print_list(t_stack *list, char *s);
 int			check_list(t_stack *list);
 int			get_flags(char ***av, int *ac);
 int			sizeoflist(t_stack *list);
+int			*lst_to_tab(t_stack *lst, int opt);
+int			nb_in_list(t_stack *lst, int nb);
 
 /*
 ** OPERATIONS

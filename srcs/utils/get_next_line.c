@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 17:14:10 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/11 10:25:22 by lobertin         ###   ########.fr       */
+/*   Updated: 2021/05/13 15:10:39 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static char	*ft_strjoind(char *s1, char const *s2)
 	if (!s2)
 		return (NULL);
 	len = ft_strlen(s1) + find_n((char *)s2);
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (NULL);
 	while (s1 && s1[i] != '\0')
 		str[i2++] = s1[i++];
@@ -54,7 +55,7 @@ static int	fill_zero(char str[], ssize_t nb)
 	return (0);
 }
 
-static	void	cut_str(char str[], size_t n)
+static	int	cut_str(char str[], size_t n)
 {
 	size_t	i;
 
@@ -63,33 +64,32 @@ static	void	cut_str(char str[], size_t n)
 		str[i++] = str[n++];
 	while (i < BUFFER_SIZE)
 		str[i++] = 0;
+	return (1);
 }
 
 int	get_next_line(int fd, char **line)
 {
-	static char	buf[OPEN_MAX][BUFFER_SIZE + 1];
+	static char	buf[BUFFER_SIZE + 1];
 	ssize_t		rd;
 
 	if (fd < 0 || fd > OPEN_MAX || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	*line = ft_strjoind(NULL, buf[fd]);
+	*line = ft_strjoind(NULL, buf);
 	rd = BUFFER_SIZE;
-	if (find_n(buf[fd]) != ft_strlen(buf[fd]))
+	if (find_n(buf) != ft_strlen(buf))
+		return (cut_str(buf, find_n(buf) + 1));
+	while (rd == BUFFER_SIZE)
 	{
-		cut_str(buf[fd], find_n(buf[fd]) + 1);
-		return (1);
-	}
-	while (rd == BUFFER_SIZE && (rd = read(fd, buf[fd], BUFFER_SIZE)))
-	{
+		rd = read(fd, buf, BUFFER_SIZE);
 		if (rd < 0)
 			return (-1);
-		fill_zero(buf[fd], rd);
-		*line = ft_strjoind(*line, buf[fd]);
+		fill_zero(buf, rd);
+		*line = ft_strjoind(*line, buf);
 		if (rd == BUFFER_SIZE)
-			rd = find_n(buf[fd]);
+			rd = find_n(buf);
 	}
-	if (find_n(buf[fd]) == ft_strlen(buf[fd]))
-		return (fill_zero(buf[fd], 0));
-	cut_str(buf[fd], find_n(buf[fd]) + 1);
+	if (find_n(buf) == ft_strlen(buf))
+		return (fill_zero(buf, 0));
+	cut_str(buf, find_n(buf) + 1);
 	return (1);
 }
