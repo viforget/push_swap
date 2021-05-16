@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/16 17:30:25 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/16 17:40:11 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 # define A 0
 # define B 1
-//# define CH 13
-//# define LONG_MAX 9223372036854775807
+# define CH 11
+
 
 /*
 ** STRUCTURES
