@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/16 17:40:11 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/16 19:37:01 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 
 # define A 0
 # define B 1
-# define CH 11
+# ifndef CH
+#  define CH 11
+# endif
 
 
 /*
@@ -58,6 +60,18 @@ t_stacks	a4(t_stacks stacks);
 t_stacks	a_2(t_stacks stacks);
 t_stacks	a_3(t_stacks s);
 t_stacks	a_4_5_6(t_stacks stacks);
+
+/*
+** A4 UTILS
+*/
+
+int			rcheck_list(t_stack *list);
+t_stacks	rrotate_until(t_stacks stacks, int nb);
+t_stacks	rotate_until(t_stacks stacks, int nb);
+int			get_a(t_stack *st, int nb);
+int			hold_second(t_stack *st, int min, int max);
+int			hold_first(t_stack *st, int min, int max);
+int			last_number(t_stack *stack);
 
 /*
 ** STACK_UTILS

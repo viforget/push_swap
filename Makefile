@@ -12,6 +12,8 @@ SRCS_PS = srcs/push_swap.c\
 			srcs/algo/a2.c\
 			srcs/algo/a3.c\
 			srcs/algo/a4.c\
+			srcs/algo/a4_rotate.c\
+			srcs/algo/a4_utils.c\
 			srcs/algo/a_2_3.c\
 			srcs/algo/a_5_6.c
 
