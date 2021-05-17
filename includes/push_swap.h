@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/17 15:27:00 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/17 16:53:45 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 ** INCLUDE
 */
 
-#include <stdlib.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-#include "get_next_line.h"
+# include "get_next_line.h"
 
 /*
 ** DEFINE
@@ -28,10 +28,6 @@
 
 # define A 0
 # define B 1
-# ifndef CH
-#  define CH 11
-# endif
-
 
 /*
 ** STRUCTURES
@@ -77,19 +73,21 @@ int			last_number(t_stack *stack);
 ** STACK_UTILS
 */
 
-int			last_number(t_stack *stack);
 t_stacks	loop_ps(int fd, t_stacks stacks, int flag);
 t_stacks	do_ins(t_stacks stacks, char *ins);
 t_stack		*get_list(int nb, char **av);
 void		*free_stack(t_stack *stack);
 void		*free_stacks(t_stacks stacks);
+void		*free_tab(char **tab);
+int			*lst_to_tab(t_stack *lst, int opt);
 int			*tri	(int *tab, int size);
+int			last_number(t_stack *stack);
 int			print_list(t_stack *list, char *s);
 int			check_list(t_stack *list);
 int			get_flags(char ***av, int *ac);
 int			sizeoflist(t_stack *list);
-int			*lst_to_tab(t_stack *lst, int opt);
 int			nb_in_list(t_stack *lst, int nb);
+int			check_nb(char *str, t_stack *lst);
 
 /*
 ** OPERATIONS
@@ -123,6 +121,6 @@ char		*ft_strrep(char *str, char c, char r);
 */
 
 int			print_and_exit(char *str);
-void	free_and_exit(t_stacks stacks);
+void		free_and_exit(t_stacks stacks);
 
 #endif
