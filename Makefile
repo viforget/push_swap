@@ -7,7 +7,6 @@ CC = @gcc -I includes
 LIBDIR = libft
 
 SRCS_PS = srcs/push_swap.c\
-			srcs/stack_utils.c\
 			srcs/algo/a1.c\
 			srcs/algo/a2.c\
 			srcs/algo/a3.c\
@@ -29,10 +28,13 @@ UTILS = srcs/operation/push.c\
 		srcs/operation/rrotate.c\
 		srcs/operation/swap.c\
 		srcs/operation/exec_op.c\
+		srcs/stack_utils.c\
+		srcs/get_stack.c\
+		srcs/free_ps.c\
+		srcs/ps_print.c\
 		srcs/error.c
 
 SRCS_CHECKER =	srcs/checker.c\
-				srcs/stack_utils.c
 
 
 O_CHECKER = $(SRCS_CHECKER:%.c=%.o)
