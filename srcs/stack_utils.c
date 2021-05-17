@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/14 18:11:39 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:38:40 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	check_nb(char *str, t_stack *lst)
 	return (1);
 }
 
-void	free_tab(char **tab)
+void	*free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -66,6 +66,34 @@ void	free_tab(char **tab)
 		i++;
 	}
 	free(tab);
+	return (NULL);
+}
+
+t_stack	*get_list_loop(char **tab, t_stack *lst, t_stack *buf, int c)
+{
+	int	j;
+
+	j = 0;
+	while (tab[j])
+	{
+		if (!check_nb(tab[j], lst))
+		{
+			free_stack(lst);
+			return (free_tab(tab));
+		}
+		buf->nb = ft_atol(tab[j]);
+		if (c || tab[j + 1])
+		{
+			buf->next = malloc(sizeof(t_stack));
+			buf->next->next = NULL;
+			buf = buf->next;
+		}
+		else
+			buf->next = NULL;
+		j++;
+	}
+	free_tab(tab);
+	return (buf);
 }
 
 t_stack	*get_list(int nb, char **av)
@@ -74,43 +102,7 @@ t_stack	*get_list(int nb, char **av)
 	t_stack	*buf;
 	int		i;
 	int		j;
-	char 	**tab;
-
-	lst = malloc(sizeof(t_stack));
-	lst->next = NULL;
-	buf = lst;
-	i = 0;
-	while(i < nb)
-	{
-		av[i] = ft_strrep(av[i], '\t', ' ');
-		tab = ft_split(av[i], ' ');
-		j = 0;
-		while (tab[j])
-		{
-			if (!check_nb(tab[j], lst))
-				return (NULL);
-			buf->nb = ft_atol(tab[j]);
-			if (i + 1 < nb || tab[j + 1])
-			{
-				buf->next = malloc(sizeof(t_stack));
-				buf->next->next = NULL;
-			}
-			else
-				buf->next = NULL;
-			buf = buf->next;
-			j++;
-		}
-		free_tab(tab);
-		i++;
-	}
-	return (lst);
-}
-
-/*t_stack	*get_list(int nb, char **av)
-{
-	t_stack	*lst;
-	t_stack	*buf;
-	int		i;
+	char	**tab;
 
 	lst = malloc(sizeof(t_stack));
 	lst->next = NULL;
@@ -118,33 +110,25 @@ t_stack	*get_list(int nb, char **av)
 	i = 0;
 	while (i < nb)
 	{
-		if (!check_nb(av[i], lst))
+		tab = ft_split(ft_strrep(av[i], '\t', ' '), ' ');
+		buf = get_list_loop(tab, lst, buf, i + 1 < nb);
+		if (!buf)
 			return (NULL);
-		buf->nb = ft_atol(av[i]);
 		i++;
-		if (i < nb)
-		{
-			buf->next = malloc(sizeof(t_stack));
-			buf->next->next = NULL;
-		}
-		else
-			buf->next = NULL;
-		buf = buf->next;
 	}
 	return (lst);
-}*/
-
+}
 
 int	*lst_to_tab(t_stack *lst, int opt)
 {
-	int *tab;
-	int size;
-	int i;
+	int	*tab;
+	int	size;
+	int	i;
 
 	i = 0;
 	size = sizeoflist(lst);
 	tab = malloc(sizeof(int)* size);
-	while(lst->next)
+	while (lst)
 	{
 		tab[i] = lst->nb;
 		lst = lst->next;
@@ -172,7 +156,7 @@ int	check_list(t_stack *list)
 int	get_flags(char ***av, int *ac)
 {
 	int	flag;
-	int exit;
+	int	exit;
 
 	exit = 0;
 	flag = 0;
@@ -214,8 +198,6 @@ t_stacks	loop_ps(int fd, t_stacks stacks, int flag)
 	}
 	return (stacks);
 }
-
-
 
 t_stacks	do_ins(t_stacks stacks, char *ins)
 {
@@ -263,6 +245,20 @@ int	nb_in_list(t_stack *lst, int nb)
 	return (lst->nb);
 }
 
+void	*free_stack(t_stack *stack)
+{
+	t_stack	*buf;
+
+	while (stack)
+	{
+		buf = stack;
+		stack = stack->next;
+		buf->next = NULL;
+		free(buf);
+	}
+	return (NULL);
+}
+
 void	*free_stacks(t_stacks stacks)
 {
 	t_stack	*buf;
@@ -282,7 +278,7 @@ void	*free_stacks(t_stacks stacks)
 	return (NULL);
 }
 
-int *tri(int *tab, int size)
+int	*tri(int *tab, int size)
 {
 	int	i;
 	int	buf;

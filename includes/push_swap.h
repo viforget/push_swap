@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 15:24:59 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/16 19:37:01 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:27:00 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int			last_number(t_stack *stack);
 t_stacks	loop_ps(int fd, t_stacks stacks, int flag);
 t_stacks	do_ins(t_stacks stacks, char *ins);
 t_stack		*get_list(int nb, char **av);
+void		*free_stack(t_stack *stack);
 void		*free_stacks(t_stacks stacks);
 int			*tri	(int *tab, int size);
 int			print_list(t_stack *list, char *s);

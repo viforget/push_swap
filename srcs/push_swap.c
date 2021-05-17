@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 14:04:36 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/14 12:05:18 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:05:46 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ t_stacks	find_algo(t_stacks stacks)
 		stacks = a1(stacks);
 	else if (sizea >= 10)
 		stacks = a3(stacks);
-	else if (sizea > 3)
+	else if (sizea > 6)
 		stacks = a2(stacks);
+	else if (sizea > 3)
+		stacks = a_4_5_6(stacks);
 	else if (sizea == 3)
 		stacks = a_3(stacks);
 	else if (sizea == 2)
@@ -52,10 +54,5 @@ int	main(int ac, char **av)
 	}
 	if (!check_list(stacks.a))
 		stacks = find_algo(stacks);
-	//stacks = a_4_5_6(stacks);
-	//print_list(stacks.a, "A");
-	//print_list(stacks.b, "B");
-	//printf("%d\n", sizeoflist(stacks.a));
-	//free_stacks(stacks);
 	return (1);
 }

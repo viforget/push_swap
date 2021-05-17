@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   a3.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lobertin <lobertin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 10:16:49 by lobertin          #+#    #+#             */
-/*   Updated: 2021/05/11 10:21:13 by lobertin         ###   ########.fr       */
+/*   Updated: 2021/05/17 12:16:16 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,7 @@ t_stacks	a3(t_stacks stacks)
 	t_stack	*buff;
 
 	sizea = sizeoflist(stacks.a);
-	tab = malloc(sizeof(int)* sizea);
-	i = 0;
-	buff = stacks.a;
-	while (buff != NULL)
-	{
-		tab[i++] = buff->nb;
-		buff = buff->next;
-	}
-	tab = tri(tab, sizea);
+	tab = lst_to_tab(stacks.a, 1);
 	i = 0;
 	while (stacks.a != NULL)
 	{

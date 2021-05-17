@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/14 16:28:19 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:40:02 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ int	main(int ac, char **av)
 		printf("OK\n");
 	else
 		printf("KO\n");
-	//print_list(stacks.a, "A");
-	//print_list(stacks.b, "B");
-	//printf("%d\n", sizeoflist(stacks.a));
 	free_stacks(stacks);
 	return (1);
 }
