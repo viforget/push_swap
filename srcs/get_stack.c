@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:36:55 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/17 16:48:35 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/18 10:25:35 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,11 @@ int	*lst_to_tab(t_stack *lst, int opt)
 int	get_flags(char ***av, int *ac)
 {
 	int	flag;
-	int	exit;
 
-	exit = 0;
 	flag = 0;
 	(*ac)--;
 	av[0]++;
-	while (*ac && (*av)[0][0] == '-' && exit == 0)
+	while (*ac && (*av)[0][0] == '-')
 	{
 		if (!ft_strcmp("-v", (*av)[0]))
 			flag += 1;
@@ -105,7 +103,7 @@ int	get_flags(char ***av, int *ac)
 			av[0]++;
 		}
 		else
-			exit = 1;
+			return (-1);
 	}
 	return (flag);
 }

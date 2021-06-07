@@ -1,9 +1,5 @@
 #include "push_swap.h"
 
-int	find_num(t_stack *lst, int nb);
-int	sizeoflist(t_stack *list);
-int	*tri	(int *tab, int size);
-
 t_stacks	coupe (t_stacks stacks, int size, int *tab, int max)
 {
 	int		i;
@@ -11,7 +7,7 @@ t_stacks	coupe (t_stacks stacks, int size, int *tab, int max)
 
 	i = -1;
 	buff = stacks.a;
-	while (i < size * 2)
+	while (i++ < size * 2)
 	{
 		if (stacks.a->nb < tab[max - size])
 			stacks = print_op("pb", pb, stacks);

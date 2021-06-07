@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 14:04:36 by viforget          #+#    #+#             */
-/*   Updated: 2021/05/17 15:05:46 by viforget         ###   ########.fr       */
+/*   Updated: 2021/05/18 10:31:04 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,10 @@ int	main(int ac, char **av)
 {
 	t_stacks	stacks;
 	char		*str;
-	int			flag;
 
-	flag = 0;
 	if (ac <= 1)
 		return (1);
-	flag = get_flags(&av, &ac);
-	if (flag == -1)
-		return (0);
-	stacks.a = get_list(ac, av);
+	stacks.a = get_list(ac - 1, av + 1);
 	if (!stacks.a)
 	{
 		free_stacks(stacks);
